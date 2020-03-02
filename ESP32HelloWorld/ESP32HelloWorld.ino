@@ -18,7 +18,7 @@
 
 
  /*
-  * Differnt between Example of Esp8266 and Esp32
+  * Different between Example of Esp8266 and Esp32
  * ESP8266 --> #include <ESP8266WiFi.h>
  * EPS32 ----> #include <WiFi.h>
  */
@@ -29,10 +29,10 @@
 #include <ros.h>
 #include <std_msgs/String.h>
 
-const char* ssid     = "Stex";
-const char* password = "pacha666a";
+const char* ssid     = "Vodafone-33602205";
+const char* password = "499358emzsfxi2c";
 // Set the rosserial socket server IP address
-IPAddress server(172,20,10,2);
+IPAddress server(192,168,1,3);
 
 // Set the rosserial socket server port
 const uint16_t serverPort = 11411;
@@ -44,7 +44,7 @@ ros::Publisher chatter("chatter", &str_msg);
 
 // Be polite and say hello
 char hello[13] = "hello world!";
-uint16_t period = 1000;
+uint16_t period = 50;
 uint32_t last_time = 0;
 
 
@@ -92,15 +92,16 @@ void loop()
       last_time = millis();
       if (nh.connected())
       {
-        Serial.println("Connected");
+        //Serial.println("Connected");
         // Say hello
         str_msg.data = hello;
         chatter.publish( &str_msg );
       } else {
         Serial.println("Not Connected");
+        
       }
     }
     nh.spinOnce();
-    delay(500);
+    delay(10);
 
 }
