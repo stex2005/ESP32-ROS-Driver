@@ -1,33 +1,14 @@
-                        
-		    *********************************************
+# ESP32 Integration with ROS Melodic (Ubuntu 18.04)                        
 
-	            ::ROS_Arduino Esp8266 && Esp32 (Ubuntu 16.04)
+## Install ESP32 Add-on
 
-		    *********************************************
+Install Arduino IDE latest version. 
+Go to File > Preferences and paste https://dl.espressif.com/dl/package_esp32_index.json on Additional Boards Manager URLs.
+Go to Tools > Board > Boards Manager and from Type dropdown select Contributed.
+Select and install ESP32 and Install
 
+## Install rosserial_arduino from apt-get
 
-1. Install ESP32 
-If you have Arduino installed to ~/, modify the installation as follows, 
-
-$cd ~/Arduino
-$mkdir -p hardware/espressif
-$cd hardware/espressif 
-$git clone https://github.com/espressif/arduino-esp32.git esp32
-$cd esp32 
-$git submodule update --init --recursive
-$cd tools $python3 get.py
-
-
-
-2. Install ESP8266
-2.1 Install Arduino IDE latest version. On Ubuntu 16.04 the Arduino IDE version from repos is too old, doesn't have Board Manager.
-2.2 Go to File > Preferences and paste http://arduino.esp8266.com/stable/package_esp8266com_index.json  on Additional Boards Manager URLs.
-2.3 Go to Tools > Board > Boards Manager and from Type dropdown select Contributed.
-2.4 Select and install ESP8266 and Install
-
-
-
-3. Install rosserial_arduino from 
 You can install rosserial for Arduino by running: 
 
 $sudo apt-get install ros-kinetic-rosserial-arduino
@@ -38,7 +19,25 @@ $rosrun rosserial_arduino make_libraries.py
 
 After restarting your IDE, you should see ros_lib listed under examples 
 
+## Update ros_limb Library
 
+Replace all .h and .cpp files that you find in this repository in Home/Arduino/libraries/ros_lib
 
+## Modify the code
 
-4. replace all file in >> Home/Arduino/libraries/ros_lib
+Add "WiFicredentials.h" with your WiFi SSID and PASS
+
+#define UID "YourSSID"
+#define PASS "YourPassword"
+
+Check your roscore IP address and update it in the code.
+
+## Run the code
+
+ roslaunch rosserial_server socket.launch
+ rostopic list
+ rostopic echo chatter                          
+ rostopic hz chatter
+
+ 
+
