@@ -26,7 +26,7 @@ You can install rosserial for Arduino by running:
 
 After restarting your IDE, you should see ros_lib listed under examples 
 
-## Update ros_limb Library
+## Update ros_lib Library
 
 Replace all .h and .cpp files that you find in this repository in Home/Arduino/libraries/ros_lib
 
