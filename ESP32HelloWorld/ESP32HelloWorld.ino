@@ -37,7 +37,8 @@ const char* ssid     = UID;
 const char* password = PASS;
 
 // Set the rosserial socket server IP address (ifconfig on roscore terminal)
-IPAddress server(192,168,1,3);
+//IPAddress server(192,168,1,3);
+IPAddress server(172,20,10,2);
 
 // Set the rosserial socket server port
 const uint16_t serverPort = 11411;
@@ -53,7 +54,7 @@ ros::Publisher chatter("chatter", &str_msg);
 char hello[13] = "hello world!";
 
 // Loop time in milliseconds
-uint16_t period = 50; 
+uint16_t period = 20; 
 uint32_t last_time = 0;
 
 
@@ -110,6 +111,6 @@ void loop()
       }
     }
     nh.spinOnce();
-    delay(10); // This can be reduced or removed
+    // delay(10); // This can be reduced or removed
 
 }
